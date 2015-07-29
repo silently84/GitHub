@@ -71,6 +71,12 @@ Func DonateCC($Check = False)
 				Else
 					$ClanString &= " " & getChatString(30, $DonatePixel[1] - 19, "coc-latinA")
 				EndIf
+				If $ClanString = "" Or $ClanString = " " Then
+					_CaptureRegion(0, 0, 435, $DonatePixel[1] + 50)
+					$ClanString = getString($DonatePixel[1] - 44)
+				Else
+					$ClanString &= " " &  getString($DonatePixel[1] - 44)
+				EndIf
 				If _Sleep(250) Then ExitLoop
 
 

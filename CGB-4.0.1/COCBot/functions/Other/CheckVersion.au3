@@ -17,19 +17,19 @@ Func CheckVersion()
 	If $ichkVersion = 1 Then
 		CheckVersionHTML()
 		If $lastversion = "" Then
-			SetLog("WE CANNOT OBTAIN PRODUCT VERSION AT THIS TIME", $COLOR_ORANGE)
+			SetLog("버전 확인을 할 수 없습니다.", $COLOR_ORANGE)
 		ElseIf VersionNumFromVersionTXT($sBotVersion) < VersionNumFromVersionTXT($lastversion) Then
-			SetLog("WARNING, YOUR BOT VERSION (" & $sBotVersion & ") IS OUT OF DATE.", $COLOR_RED)
-			SetLog("PLEASE DOWNLOAD THE LATEST(" & $lastversion & ") FROM https://GameBot.org               ", $COLOR_RED)
+			SetLog("경고!! 사용중인 버전(" & $sBotVersion & ")은 구버전입니다.", $COLOR_RED)
+			SetLog("최신버전(" & $lastversion & ")으로 업그레이드 하세요. ( https://GameBot.org )", $COLOR_RED)
 			SetLog(" ")
 			_PrintLogVersion($oldversmessage)
 		ElseIf VersionNumFromVersionTXT($sBotVersion) > VersionNumFromVersionTXT($lastversion) Then
-			SetLog("YOU ARE USING A FUTURE VERSION OF CLASH GAMEBOT CHIEF!", $COLOR_GREEN)
-			SetLog("YOUR VERSION: " & $sBotVersion, $COLOR_GREEN)
-			SetLog("OFFICIAL VERSION: " & $lastversion, $COLOR_GREEN)
+			SetLog("확인되지 않은 버전을 사용하고 있습니다.", $COLOR_GREEN)
+			SetLog("사용중인 버전 : " & $sBotVersion, $COLOR_GREEN)
+			SetLog("공식 릴리즈 버전 : " & $lastversion, $COLOR_GREEN)
 			SetLog(" ")
 		Else
-			SetLog("WELCOME CHIEF, YOU HAVE THE LATEST VERSION OF THE BOT", $COLOR_GREEN)
+			SetLog("환영합니다. 최신버전을 사용중입니다.", $COLOR_GREEN)
 			SetLog(" ")
 			_PrintLogVersion($lastmessage)
 		EndIf
@@ -130,24 +130,24 @@ Func _PrintLogVersion($message)
 	Else
 		For $i = 1 To $messagevet[0]
 			If StringLen($messagevet[$i]) <= 53 Then
-				SetLog($messagevet[$i], $COLOR_BLACK, "Lucida Console", 8.5)
+				SetLog($messagevet[$i], $COLOR_BLACK, "Verdana", 8)
 			Else
 				While StringLen($messagevet[$i]) > 53
 					Local $sp = StringInStr(StringLeft($messagevet[$i], 53), " ", 0, -1) ; find last occurrence of space
 					If $sp = 0 Then ;no found spaces
 						Local $sp = StringInStr($messagevet[$i], " ", 0) ; find first occurrence of space
 						If $sp = 0 Then
-							SetLog($messagevet[$i], $COLOR_BLACK, "Lucida Console", 8.5)
+							SetLog($messagevet[$i], $COLOR_BLACK, "Verdana", 8)
 						Else
-							SetLog(StringLeft($messagevet[$i], $sp), $COLOR_BLACK, "Lucida Console", 8.5)
+							SetLog(StringLeft($messagevet[$i], $sp), $COLOR_BLACK, "Verdana", 8)
 							$messagevet[$i] = StringMid($messagevet[$i], $sp + 1, -1)
 						EndIf
 					Else
-						SetLog(StringLeft($messagevet[$i], $sp), $COLOR_BLACK, "Lucida Console", 8.5)
+						SetLog(StringLeft($messagevet[$i], $sp), $COLOR_BLACK, "Verdana", 8)
 						$messagevet[$i] = StringMid($messagevet[$i], $sp + 1, -1)
 					EndIf
 				WEnd
-				If StringLen($messagevet[$i]) > 0 Then SetLog($messagevet[$i], $COLOR_BLACK, "Lucida Console", 8.5)
+				If StringLen($messagevet[$i]) > 0 Then SetLog($messagevet[$i], $COLOR_BLACK, "Verdana", 8)
 			EndIf
 		Next
 	EndIf

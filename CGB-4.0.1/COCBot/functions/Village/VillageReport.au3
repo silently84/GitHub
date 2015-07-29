@@ -48,20 +48,21 @@ Func VillageReport($bBypass = False)
 		SetLog(" [G]: " & _NumberFormat($GoldCount) & " [E]: " & _NumberFormat($ElixirCount) & " [GEM]: " & _NumberFormat($GemCount), $COLOR_GREEN)
 	EndIf
 	If $bBypass = False Then ; update stats
-		Switch $FirstAttack
-			Case 2
-				ReportLastTotal()
-				ReportCurrent()
-			Case 1
-				;			GUICtrlSetState($lblLastAttackTemp, $GUI_HIDE)
-				GUICtrlSetState($lblTotalLootTemp, $GUI_HIDE)
-				ReportLastTotal()
-				ReportCurrent()
-				$FirstAttack = 2
-			Case 0
-				ReportStart()
-				ReportCurrent()
-				$FirstAttack = 1
+	Switch $FirstAttack
+		Case 2
+			ReportLastTotal()
+			ReportCurrent()
+		Case 1
+			GUICtrlSetState($lblLastAttackTemp, $GUI_HIDE)
+			GUICtrlSetState($lblTotalLootTemp, $GUI_HIDE)
+			GUICtrlSetState($lblHourlyStatsTemp, $GUI_HIDE) ;; added for hourly stats
+			ReportLastTotal()
+			ReportCurrent()
+			$FirstAttack = 2
+		Case 0
+			ReportStart()
+			ReportCurrent()
+			$FirstAttack = 1
 		EndSwitch
 	EndIf
 
@@ -163,5 +164,11 @@ Func ReportLastTotal()
 		GUICtrlSetData($lblDarkLoot, _NumberFormat($iDarkLoot))
 	EndIf
 	GUICtrlSetData($lblTrophyLoot, _NumberFormat($iTrophyLoot))
+
+	   ; hourly stats
+	GUICtrlSetData($lblHourlyStatsGold, StringFormat("%.1f", $iGoldLoot / Int(TimerDiff($sTimer)) * 3600) & "k/h")
+	GUICtrlSetData($lblHourlyStatsElixir, StringFormat("%.1f", $iElixirLoot / Int(TimerDiff($sTimer)) * 3600) & "k/h")
+	GUICtrlSetData($lblHourlyStatsDark, StringFormat("%d", $iDarkLoot / Int(TimerDiff($sTimer)) * 3600 * 1000) & "/h")
+	GUICtrlSetData($lblHourlyStatsTrophy, StringFormat("%.2f", $iTrophyLoot / Int(TimerDiff($sTimer)) * 3600 * 1000) & "/h")
 
 EndFunc   ;==>ReportLastTotal

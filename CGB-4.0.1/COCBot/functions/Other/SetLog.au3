@@ -1,5 +1,5 @@
-Func SetLog($String, $Color = $COLOR_BLACK, $Font = "Verdana", $FontSize = 7.5, $statusbar = 1) ;Sets the text for the log
-	_GUICtrlRichEdit_SetFont($txtLog, 6, "Lucida Console")
+Func SetLog($String, $Color = $COLOR_BLACK, $Font = "Verdana", $FontSize = 8, $statusbar = 1) ;Sets the text for the log
+	_GUICtrlRichEdit_SetFont($txtLog, 8, "Verdana")
 	_GUICtrlRichEdit_AppendTextColor($txtLog, Time(), 0x000000)
 	_GUICtrlRichEdit_SetFont($txtLog, $FontSize, $Font)
 	_GUICtrlRichEdit_AppendTextColor($txtLog, $String & @CRLF, _ColorConvert($Color))

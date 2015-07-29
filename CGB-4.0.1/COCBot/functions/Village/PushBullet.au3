@@ -52,23 +52,23 @@ Func _RemoteControl()
 				Switch $body[$x]
 					Case "BOT HELP"
 						Local $txtHelp = "You can remotely control your bot sending commands following this syntax:"
-						$txtHelp &= '\n' & "BOT HELP - send this help message"
-						$txtHelp &= '\n' & "BOT DELETE  - delete all your previous Push message"
-						$txtHelp &= '\n' & "BOT <Village Name> RESTART - restart the bot named <Village Name> and bluestacks"
-						$txtHelp &= '\n' & "BOT <Village Name> STOP - stop the bot named <Village Name>"
-						$txtHelp &= '\n' & "BOT <Village Name> PAUSE - pause the bot named <Village Name>"
-						$txtHelp &= '\n' & "BOT <Village Name> RESUME   - resume the bot named <Village Name>"
-						$txtHelp &= '\n' & "BOT <Village Name> STATS - send Village Statistics of <Village Name>"
-						$txtHelp &= '\n' & "BOT <Village Name> LOG - send the current log file of <Village Name>"
-						$txtHelp &= '\n' & "BOT <Village Name> LASTRAID - send the last raid loot screenshot of <Village Name>"
-						$txtHelp &= '\n' & "BOT <Village Name> LASTRAIDTXT - send the last raid loot values of <Village Name>"
-						$txtHelp &= '\n' & "BOT <Village Name> SCREENSHOT - send a screenshot of <Village Name>"
+						$txtHelp &= '\n' & "BOT HELP - 현재 이 도움말을 보냅니다."
+						$txtHelp &= '\n' & "BOT DELETE  - 전에 받은 모든 메세지를 삭제합니다."
+						$txtHelp &= '\n' & "BOT <마을이름> RESTART - <마을이름>을 사용중인 'Bot'과 블루스택을 재시작합니다."
+						$txtHelp &= '\n' & "BOT <마을이름> STOP - <마을이름>을 사용중인 'Bot'을 작업종료합니다."
+						$txtHelp &= '\n' & "BOT <마을이름> PAUSE - <마을이름>을 사용중인 'Bot'을 정지시킵니다."
+						$txtHelp &= '\n' & "BOT <마을이름> RESUME - <마을이름>을 사용중인 'Bot'을 재개합니다."
+						$txtHelp &= '\n' & "BOT <마을이름> STATS - <마을이름>의 마을정보를 전송합니다."
+						$txtHelp &= '\n' & "BOT <마을이름> LOG - <마을이름>을 사용중인 'Bot'의 최근 로그를 전송합니다."
+						$txtHelp &= '\n' & "BOT <마을이름> LASTRAID - <마을이름>을 사용중인 'Bot'의 최근약탈사진을 전송합니다."
+						$txtHelp &= '\n' & "BOT <마을이름> LASTRAIDTXT - <마을이름>을 사용중인 'Bot'의 최근약탈현황을 전송합니다."
+						$txtHelp &= '\n' & "BOT <마을이름> SCREENSHOT - <마을이름>의 현재 마을을 사진으로 저장하여 전송합니다."
 						$txtHelp &= '\n'
-						$txtHelp &= '\n' & "Examples:"
+						$txtHelp &= '\n' & "예시 :"
 						$txtHelp &= '\n' & "Bot MyVillage Pause"
 						$txtHelp &= '\n' & "Bot Delete "
 						$txtHelp &= '\n' & "Bot MyVillage ScreenShot"
-						_Push($iOrigPushB & " | Request for Help" & "\n" & $txtHelp)
+						_Push($iOrigPushB & " | [도움말 요청]" & "\n" & $txtHelp)
 						SetLog("Pushbullet: Your request has been received from ' " & $iOrigPushB & ". Help has been sent", $COLOR_GREEN)
 						_DeleteMessage($iden[$x])
 					Case "BOT " & StringUpper($iOrigPushB) & " PAUSE"

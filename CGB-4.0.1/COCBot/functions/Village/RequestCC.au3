@@ -79,7 +79,8 @@ Func _makerequest()
 		If $sTxtRequest <> "" Then
 			Click($atxtRequestCCBtn[0], $atxtRequestCCBtn[1], 1, 0, "#0254") ;Select text for request
 			_Sleep(250)
-			ControlSend($Title, "", "", $sTxtRequest, 0)
+			$sTxtRequestK=RequestK($sTxtRequest)
+			ControlSend($Title, "", "", $sTxtRequestK, 0)
 		EndIf
 		$icount = 0
 		While Not _ColorCheck(_GetPixelColor($aSendRequestCCBtn[0], $aSendRequestCCBtn[1], True), Hex(0x5fac10, 6), 20)
@@ -96,3 +97,29 @@ Func _makerequest()
 	EndIf
 
 EndFunc   ;==>_makerequest
+
+Func RequestK(byRef $Text) ; make by Zerohyun
+	Local $charSta[19] = ["r", "R", "s", "e", "E", "f", "a", "q", "Q", "t", "T", "d", "w", "W", "c", "z", "x", "v", "g"]
+    Local $charCen[21] =["k", "o", "i", "O", "j", "p", "u", "P", "h", "hk", "ho", "hl", "y", "n", "nj", "np", "nl", "b", "m", "ml", "l"]
+	Local $charEnd[28] = ["", "r", "R", "rt", "s", "sw", "sg", "e", "f", "fr", "fa", "fq", "ft", "fx", "fv", "fg", "a", "q", "qt", "t", "T", "d", "w", "c", "z", "x", "v", "g"]
+	Local $charbase = "44032"
+	Local $sArray = StringLen($Text)
+	Local $Stringch = ""
+
+	for $i=0 to $sArray-1
+
+		Local $aArray = StringToASCIIArray($Text)
+		if $aArray[$i] >= $charbase then
+			$sArrayE = Mod(($aArray[$i]-$charbase),28)
+			$sArrayC = Mod(($aArray[$i]-$charbase-$sArrayE)/28,21)
+			$sArrayS = ((($aArray[$i]-$charbase-$sArrayE)/28)-$sArrayC)/21
+			$ChEnd = $charEnd[$sArrayE]
+			$ChCen = $charCen[$sArrayC]
+			$ChSta = $charSta[$sArrayS]
+			$Stringch = $Stringch & $ChSta & $ChCen & $ChEnd
+		Else
+			$Stringch = $Stringch & chr($aArray[$i])
+		EndIf
+	Next
+	Return $Stringch
+EndFunc   ;==>RequestK

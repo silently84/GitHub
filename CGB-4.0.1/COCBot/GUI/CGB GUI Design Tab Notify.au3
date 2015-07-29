@@ -16,91 +16,94 @@
 ;~ -------------------------------------------------------------
 ;~ Notify Tab
 ;~ -------------------------------------------------------------
-$tabNotify = GUICtrlCreateTabItem("Notify")
+$tabNotify = GUICtrlCreateTabItem("알림설정")
 	Local $x = 30, $y = 150
-	$grpPushBullet = GUICtrlCreateGroup("PushBullet Alert", $x - 20, $y - 20, 450, 375)
+	$grpPushBullet = GUICtrlCreateGroup("PushBullet 알림", $x - 20, $y - 20, 450, 375)
 	$picPushBullet = GUICtrlCreateIcon ($pIconLib, $eIcnPushBullet, $x, $y, 32, 32)
-	$chkPBenabled = GUICtrlCreateCheckbox("Enable", $x + 40, $y)
+	$chkPBenabled = GUICtrlCreateCheckbox("사용함", $x + 40, $y)
 		GUICtrlSetOnEvent(-1, "chkPBenabled")
-		GUICtrlSetTip(-1, "Enable PushBullet notifications")
+		GUICtrlSetTip(-1, "PushBullet 공지알림을 사용합니다.")
 	$y += 22
-	$chkPBRemote = GUICtrlCreateCheckbox("Remote Control", $x + 40, $y)
+	$chkPBRemote = GUICtrlCreateCheckbox("원격조종", $x + 40, $y)
 		GUICtrlSetTip(-1, "Enables PushBullet Remote function")
 		GUICtrlSetState(-1, $GUI_DISABLE)
 	$y = 150
-	$chkDeleteAllPushes = GUICtrlCreateCheckbox("Delete Msg on Start", $x + 160, $y)
-		GUICtrlSetTip(-1, "It will delete all previous push notification when you start bot")
+	$chkDeleteAllPushes = GUICtrlCreateCheckbox("시작시 메세지삭제", $x + 160, $y)
+		GUICtrlSetTip(-1, "프로그램 실행시 전에 받았던 공지 알림을 모두 삭제합니다.")
 		GUICtrlSetState(-1, $GUI_DISABLE)
-	$btnDeletePBmessages = GUICtrlCreateButton("Delete all Msg now", $x + 300, $y, 100, 20)
-		GUICtrlSetTip(-1, "Click here to delete all Pushbullet messages.")
+	$btnDeletePBmessages = GUICtrlCreateButton("지금 삭제", $x + 300, $y, 100, 20)
+		GUICtrlSetTip(-1, "Pushbullet을 통하여 받은 모든 메세지를 지금 삭제합니다.")
 		GUICtrlSetOnEvent(-1, "btnDeletePBMessages")
 		IF $btnColor then GUICtrlSetBkColor(-1, 0x5CAD85)
 		GUICtrlSetState(-1, $GUI_DISABLE)
 	$y += 22
-	$chkDeleteOldPushes = GUICtrlCreateCheckbox("Delete Msg older than", $x + 160, $y)
-		GUICtrlSetTip(-1, "Delete all previous push notification older than specified hour")
+	$chkDeleteOldPushes = GUICtrlCreateCheckbox("오래된 메세지삭제", $x + 160, $y)
+		GUICtrlSetTip(-1, "일정시간 이전에 받은 메세지를 모두 삭제합니다.")
 		GUICtrlSetState(-1, $GUI_DISABLE)
 		GUICtrlSetOnEvent(-1, "chkDeleteOldPushes")
 	$cmbHoursPushBullet = GUICtrlCreateCombo("", $x + 300, $y, 100, 35, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-		GUICtrlSetTip(-1, "Set the interval for messages to be deleted.")
+		GUICtrlSetTip(-1, "시간이 지난 메세지를 삭제합니다.")
 		GUICtrlSetData(-1, "1 Hour|2 Hours|3 Hours|4 Hours|5 Hours|6 Hours|7 Hours|8 Hours|9 Hours|10 Hours|11 Hours|12 Hours|13 Hours|14 Hours|15 Hours|16 Hours|17 Hours|18 Hours|19 Hours|20 Hours|21 Hours|22 Hours|23 Hours|24 Hours", "-")
 		GUICtrlSetState (-1, $GUI_DISABLE)
 	$y += 30
 	$lblPushBTokenValue = GUICtrlCreateLabel("Access Token:", $x, $y, -1, -1, $SS_RIGHT)
 	$PushBTokenValue = GUICtrlCreateInput("", $x + 120, $y - 3, 280, 19)
-		GUICtrlSetTip(-1, "You need a Token to use PushBullet notifications. Get a token from PushBullet.com")
+		GUICtrlSetTip(-1, "'PushBullet.com'로그인후 Setting>Account 페이지에 있는 토큰을 입력하세요.")
 		GUICtrlSetState(-1, $GUI_DISABLE)
 	$y += 25
-	$lblOrigPush = GUICtrlCreateLabel("Profile/Village Name:", $x, $y, -1, -1, $SS_RIGHT)
-		$txtTip = "Your Profile/Village name - Set this on the Misc Tab under Profiles."
+	$lblOrigPush = GUICtrlCreateLabel("마을이름 :", $x, $y, -1, -1, $SS_RIGHT)
+		$txtTip = "마을 이름을 설정하세요 - '기타설정'탭의 '프로필' 항목에서 할 수 있습니다."
 		GUICtrlSetTip(-1, $txtTip)
 	$OrigPushB = GUICtrlCreateLabel("", $x + 120, $y - 1, 280, 20, $SS_SUNKEN)
 		GUICtrlSetBkColor(-1, 0xF0F0F0)
 		GUICtrlSetTip(-1, $txtTip)
 		GUICtrlSetState(-1, $GUI_DISABLE)
 	$y += 25
-	$lblNotifyWhen = GUICtrlCreateLabel("Send a PushBullet message for these options:", $x, $y, -1, -1, $SS_RIGHT)
+	$lblNotifyWhen = GUICtrlCreateLabel("전송할 PushBullet알림 :", $x, $y, -1, -1, $SS_RIGHT)
 	$y += 15
-	$chkAlertPBVMFound = GUICtrlCreateCheckbox("Match Found", $x + 10, $y)
-		GUICtrlSetTip(-1, "Send the amount of available loot when bot finds a village to attack.")
+	$chkAlertPBVMFound = GUICtrlCreateCheckbox("검색성공", $x + 10, $y)
+		GUICtrlSetTip(-1, "공격할 마을을 발견하면 약탈가능정보와 함께 메세지를 전송합니다.")
 		GUICtrlSetState(-1, $GUI_DISABLE)
-	$chkAlertPBLastRaid = GUICtrlCreateCheckbox("Last raid as image", $x + 100, $y)
-		GUICtrlSetTip(-1, "Send the last raid screenshot.")
+	$chkAlertPBLastRaid = GUICtrlCreateCheckbox("약탈현황(사진)", $x + 100, $y)
+		GUICtrlSetTip(-1, "약탈현황을 저장하여 사진과 함께 전송합니다.")
 		GUICtrlSetState(-1, $GUI_DISABLE)
-	$chkAlertPBLastRaidTxt = GUICtrlCreateCheckbox("Last raid as Text", $x + 210, $y, -1, -1)
+	$chkAlertPBLastRaidTxt = GUICtrlCreateCheckbox("약탈현황(문자)", $x + 210, $y, -1, -1)
 		GUICtrlSetState(-1, $GUI_DISABLE)
-		GUICtrlSetTip(-1, "Send the last raid results as text.")
-	$chkAlertPBCampFull = GUICtrlCreateCheckbox("Army Camp Full", $x + 315, $y, -1, -1)
-		GUICtrlSetTip(-1, "Sent an Alert when your Army Camp is full.")
+		GUICtrlSetTip(-1, "약탈현황을 글로 나타내 전송합니다.")
+	$chkAlertPBCampFull = GUICtrlCreateCheckbox("집합소가득", $x + 315, $y, -1, -1)
+		GUICtrlSetTip(-1, "집합소가 가득 찼을 때 메세지를 전송합니다.")
 		GUICtrlSetState(-1, $GUI_DISABLE)
 	$y += 20
-	$chkAlertPBWallUpgrade = GUICtrlCreateCheckbox("Wall upgrade", $x + 10, $y, -1, -1)
-		 GUICtrlSetTip(-1, "Send info about wall upgrades.")
+	$chkAlertPBWallUpgrade = GUICtrlCreateCheckbox("성벽렙업", $x + 10, $y, -1, -1)
+		 GUICtrlSetTip(-1, "성벽을 업그레이드 했을 경우 메세지를 전송합니다.")
 		 GUICtrlSetState(-1, $GUI_DISABLE)
-	$chkAlertPBOOS = GUICtrlCreateCheckbox("Error: Out Of Sync", $x + 100, $y, -1, -1)
-		GUICtrlSetTip(-1, "Send an Alert when you get the Error: Client and Server out of sync")
+	$chkAlertPBOOS = GUICtrlCreateCheckbox("동기화에러", $x + 100, $y, -1, -1)
+		GUICtrlSetTip(-1, "서버와 동기화 오류를 발견했을 경우 메세지를 전송합니다.")
 		GUICtrlSetState(-1, $GUI_DISABLE)
-	$chkAlertPBVBreak = GUICtrlCreateCheckbox("Take a break", $x + 210, $y, -1, -1)
-		GUICtrlSetTip(-1, "Send an Alert when you have been playing for too long and your villagers need to rest.")
+	$chkAlertPBVBreak = GUICtrlCreateCheckbox("휴식", $x + 210, $y, -1, -1)
+		GUICtrlSetTip(-1, "오랜시간 접속을 유지하여 휴식을 하게 되면 메세지를 전송합니다.")
 		GUICtrlSetState(-1, $GUI_DISABLE)
 	$y += 20
-	$chkAlertPBVillage = GUICtrlCreateCheckbox("Village Report", $x + 10, $y, -1, -1)
-		GUICtrlSetTip(-1, "Send a Village Report.")
+	$chkAlertPBVillage = GUICtrlCreateCheckbox("마을정보", $x + 10, $y, -1, -1)
+		GUICtrlSetTip(-1, "마을정보를 전송합니다.")
 		GUICtrlSetState(-1, $GUI_DISABLE)
-	$chkAlertPBLastAttack = GUICtrlCreateCheckbox("Alert Last Attack", $x + 100, $y, -1, -1)
-		GUICtrlSetTip(-1, "Send info about the Last Attack.")
+	$chkAlertPBLastAttack = GUICtrlCreateCheckbox("최근약탈정보", $x + 100, $y, -1, -1)
+		GUICtrlSetTip(-1, "최근약탈현황을 전송합니다.")
 		GUICtrlSetState(-1, $GUI_DISABLE)
-	$chkAlertPBOtherDevice = GUICtrlCreateCheckbox("Another device connected", $x + 210, $y, -1, -1)
-		GUICtrlSetTip(-1, "Sent an Alert when your village is connected to from another device.")
+	$chkAlertPBOtherDevice = GUICtrlCreateCheckbox("다른기기접속", $x + 210, $y, -1, -1)
+		GUICtrlSetTip(-1, "다른 기기에서 접속했을 경우 메세지를 전송합니다.")
 		GUICtrlSetState(-1, $GUI_DISABLE)
 	$y = 350
-	$lblgrppushbullet = GUICtrlCreateGroup("PushBullet Remote Control Functions", $x - 10, $y - 20, 430, 170)
-		$lblPBdesc = GUICtrlCreateLabel("BOT HELP - send this help message" & @CRLF & "BOT DELETE  - delete all your previous PushBullet messages" & @CRLF & _
-			"BOT <Village Name> RESTART - restart the bot named <Village Name> and BlueStacks" & @CRLF & "BOT <Village Name> STOP - stop the bot named <Village Name>" & @CRLF & _
-			"BOT <Village Name> PAUSE - pause the bot named <Village Name>" & @CRLF & "BOT <Village Name> RESUME   - resume the bot named <Village Name>" & @CRLF & _
-			"BOT <Village Name> STATS - send Village Statistics of <Village Name>" & @CRLF & "BOT <Village Name> LOG - send the current log file of <Village Name>" & @CRLF & _
-			"BOT <Village Name> LASTRAID -  send the last raid loot screenshot of <Village Name>" & @CRLF & "BOT <Village Name> LASTRAIDTXT - send the last raid loot values of <Village Name>" & @CRLF & _
-			"BOT <Village Name> SCREENSHOT - send a screenshot of <Village Name>", $x, $y, -1, -1, $SS_LEFT)
+	$lblgrppushbullet = GUICtrlCreateGroup("'PushBullet' 원격조종 옵션", $x - 10, $y - 20, 430, 170)
+		$lblPBtext = "BOT HELP - 현재 이 도움말을 보냅니다." & @CRLF & "" & @CRLF & "BOT DELETE  - 전에 받은 모든 메세지를 삭제합니다." & @CRLF & "" & @CRLF & _
+			"BOT <마을이름> RESTART" & @CRLF & "  <마을이름>을 사용중인 'Bot'과 블루스택을 재시작합니다." & @CRLF & "" & @CRLF & "BOT <마을이름> STOP" & @CRLF & "  <마을이름>을 사용중인 'Bot'을 작업종료합니다." & @CRLF & "" & @CRLF & _
+			"BOT <마을이름> PAUSE" & @CRLF & "  <마을이름>을 사용중인 'Bot'을 정지시킵니다." & @CRLF & "" & @CRLF & "BOT <마을이름> RESUME" & @CRLF & "  <마을이름>을 사용중인 'Bot'을 재개합니다." & @CRLF & "" & @CRLF & _
+			"BOT <마을이름> STATS" & @CRLF & "  <마을이름>의 마을정보를 전송합니다." & @CRLF & "" & @CRLF & "BOT <마을이름> LOG" & @CRLF & "  <마을이름>을 사용중인 'Bot'의 최근 로그를 전송합니다." & @CRLF & "" & @CRLF & _
+			"BOT <마을이름> LASTRAID" & @CRLF & "  <마을이름>을 사용중인 'Bot'의 최근약탈사진을 전송합니다." & @CRLF & "" & @CRLF & "BOT <마을이름> LASTRAIDTXT" & @CRLF & "   <마을이름>을 사용중인 'Bot'의 최근약탈현황을 전송합니다." & @CRLF & "" & @CRLF & _
+			"BOT <마을이름> SCREENSHOT" & @CRLF & "  <마을이름>의 현재 마을을 사진으로 저장하여 전송합니다."
+		$lblPBdesc = GUICtrlCreateEdit( $lblPBtext, $x, $y,410, 140, BitOR($ES_MULTILINE, $ES_READONLY, $WS_VSCROLL))
+			GUICtrlSetFont(-1,8.5)
+			GUICtrlSetBkColor ( -1, $COLOR_WHITE)
 		GUICtrlCreateGroup("", -99, -99, 1, 1)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 GUICtrlCreateTabItem("")

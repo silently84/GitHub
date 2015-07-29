@@ -29,8 +29,8 @@ $tabMain = GUICtrlCreateTab(5, 85, 461, 425, $TCS_MULTILINE)
 ;~ ------------------------------------------------------
 
 
-$DonateMenu = GUICtrlCreateMenu("&Paypal Donate?")
-$DonateConfig = GUICtrlCreateMenuItem("Support the development", $DonateMenu)
+$DonateMenu = GUICtrlCreateMenu("&Paypal Donate")
+$DonateConfig = GUICtrlCreateMenuItem("개발진 후원", $DonateMenu)
 GUICtrlSetOnEvent(-1, "")
 
 ;~ ------------------------------------------------------
@@ -64,7 +64,7 @@ Local $x = 30, $y = 150
 		$y += 35
 		$txtCredits = "Please visit our web forums:"
 		$lblCredits2 = GUICtrlCreateLabel($txtCredits, $x - 5, $y, -1, -1)
-		$y += 20
+		$y += 15
 		$labelGameBotURL = GUICtrlCreateLabel("https://GameBot.org", $x - 5, $y, 150, 20)
 			GUICtrlSetFont(-1, 8.5, $FW_BOLD)
 			GUICtrlSetColor(-1, $COLOR_BLUE)
@@ -78,13 +78,22 @@ Local $x = 30, $y = 150
 						"And to all forum members contributing to make this great software!" & @CRLF & _
 						"" & @CRLF & _
 						"The latest release of the 'Clash Game Bot' can be found at:"
-		$lbltxtCredits = GUICtrlCreateEdit($txtCredits, $x - 5, $y, 400, 80, BITOR($WS_VISIBLE, $ES_AUTOVSCROLL, $ES_READONLY, $SS_LEFT),0)
+		$lbltxtCredits = GUICtrlCreateEdit($txtCredits, $x - 5, $y, 400, 100, BITOR($WS_VISIBLE, $ES_AUTOVSCROLL, $ES_READONLY, $SS_LEFT),0)
 			GUICtrlSetBkColor(-1, $COLOR_WHITE)
-		$y += 85
+		$y += 100
 		$labelForumURL = GUICtrlCreateLabel("https://GameBot.org/latest", $x - 5, $y, 450, 20)
 			GUICtrlSetFont(-1, 8.5, $FW_BOLD)
 			GUICtrlSetColor(-1, $COLOR_BLUE)
-		$y += 100
+		; 한글화 삽입
+		$y += 25
+		$lbltxtKorean = GUICtrlCreateLabel("한글화 : ", $x - 5, $y , 400, 20)
+			GUICtrlSetFont(-1, 8.5, $FW_BOLD)
+		$y +=20
+		$txtKoreanW =  "by 로뎀나무(Zerohyun)"
+		$lbltxtKoreanW = GUICtrlCreateEdit($txtKoreanW, $x, $y, 400, 25, BITOR($WS_VISIBLE, $ES_AUTOVSCROLL, $ES_READONLY, $SS_LEFT),0)
+			GUICtrlSetBkColor(-1, $COLOR_WHITE)
+
+		$y += 35
 		$txtWarn =	"By running this program, the user accepts all responsibility that arises from the use of this software."  & @CRLF & _
 						"This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even " & @CRLF & _
 						"the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General " & @CRLF & _
@@ -108,6 +117,6 @@ _GUICtrlStatusBar_SetSimple($statLog)
 _GUICtrlStatusBar_SetText($statLog, "Status : Idle")
 $tiAbout = TrayCreateItem("About")
 TrayCreateItem("")
-$tiExit = TrayCreateItem("Exit")
+$tiExit = TrayCreateItem("종료")
 
 ;~ -------------------------------------------------------------

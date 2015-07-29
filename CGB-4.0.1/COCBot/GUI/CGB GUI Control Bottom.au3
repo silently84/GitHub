@@ -15,7 +15,7 @@
 
 Func Open()
 
-	SetLog("Starting BlueStacks", $COLOR_GREEN)
+	SetLog("블루스택을 실행합니다.", $COLOR_GREEN)
 
 	If $64Bit Then ;If 64-Bit
 		ShellExecute("C:\Program Files (x86)\BlueStacks\HD-StartLauncher.exe")
@@ -29,7 +29,7 @@ Func Open()
 	WEnd
 
 	If IsArray(ControlGetPos($Title, "_ctl.Window", "[CLASS:BlueStacksApp; INSTANCE:1]")) Then
-		SetLog("BlueStacks Loaded, took " & Round(TimerDiff($hTimer) / 1000, 2) & " seconds to begin.", $COLOR_GREEN)
+		SetLog("블루스택이 실행되었습니다. 구동시간 : " & Round(TimerDiff($hTimer) / 1000, 2) & "초", $COLOR_GREEN)
 		DisableBS($HWnD, $SC_MINIMIZE)
 		DisableBS($HWnD, $SC_CLOSE)
 		Initiate()
@@ -71,9 +71,9 @@ Func Initiate()
 			RegWrite($REGISTRY_KEY_DIRECTORY, "GuestWidth", "REG_DWORD", $DEFAULT_WIDTH)
 			RegWrite($REGISTRY_KEY_DIRECTORY, "WindowHeight", "REG_DWORD", $DEFAULT_HEIGHT)
 			RegWrite($REGISTRY_KEY_DIRECTORY, "WindowWidth", "REG_DWORD", $DEFAULT_WIDTH)
-			SetLog("Please restart your computer for the applied changes to take effect.", $COLOR_ORANGE)
+			SetLog("변경사항을 적용하기 위해 컴퓨터를 재부팅하세요.", $COLOR_ORANGE)
 			If _Sleep(3000) Then Return
-			$MsgRet = MsgBox(BitOR($MB_OKCANCEL, $MB_SYSTEMMODAL), "Restart Computer", "Restart your computer for the applied changes to take effect." & @CRLF & "If your BlueStacks is the correct size  (860 x 720), click OK.", 10)
+			$MsgRet = MsgBox(BitOR($MB_OKCANCEL, $MB_SYSTEMMODAL), "컴퓨터 재시작", "변경사항을 적용하기 위해 컴퓨터를 재부팅하세요." & @CRLF & "If your BlueStacks is the correct size  (860 x 720), click OK.", 10)
 			If $MsgRet <> $IDOK Then
 				btnStop()
 				Return
@@ -132,7 +132,7 @@ Func Initiate()
 
 		runBot()
 	Else
-		SetLog("Not in Game!", $COLOR_RED)
+		SetLog("게임을 하고 있지 않습니다.!", $COLOR_RED)
 ;		$RunState = True
 		btnStop()
 	EndIf
@@ -229,7 +229,7 @@ Func btnStop()
 		$Restart = True
 		FileClose($hLogFileHandle)
 		FileClose($hAttackLogFileHandle)
-		SetLog(_PadStringCenter(" Bot Stop ", 50, "="), $COLOR_ORANGE)
+		SetLog(_PadStringCenter(" 작업종료 ", 50, "="), $COLOR_ORANGE)
 	EndIf
 EndFunc   ;==>btnStop
 
@@ -265,13 +265,14 @@ EndFunc   ;==>btnAttackNowTS
 
 Func btnHide()
 	If $Hide = False Then
-		GUICtrlSetData($btnHide, "Show BS")
+		GUICtrlSetData($btnHide, "보이기")
 		$botPos[0] = WinGetPos($Title)[0]
 		$botPos[1] = WinGetPos($Title)[1]
 		WinMove($Title, "", -32000, -32000)
+        _TaskBarControl($HWnD, 0)
 		$Hide = True
 	Else
-		GUICtrlSetData($btnHide, "Hide BS")
+		GUICtrlSetData($btnHide, "숨기기")
 
 		If $botPos[0] = -32000 Then
 			WinMove($Title, "", 0, 0)
@@ -279,6 +280,7 @@ Func btnHide()
 			WinMove($Title, "", $botPos[0], $botPos[1])
 			WinActivate($Title)
 		EndIf
+		_TaskBarControl($HWnD, 1)
 		$Hide = False
 	EndIf
 EndFunc   ;==>btnHide

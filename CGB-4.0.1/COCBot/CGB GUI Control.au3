@@ -93,6 +93,10 @@ Func GUIControl($hWind, $iMsg, $wParam, $lParam)
 					If $RunState Then btnAttackNowLB()
 				Case $btnAttackNowTS
 					If $RunState Then btnAttackNowTS()
+				Case $btnLoots
+					If $RunState Then btnLoots()
+				Case $btnLogs
+					If $RunState Then btnLogs()
 				Case $DonateConfig
 					ShellExecute("https://gamebot.org/forums/misc.php?action=mydonations")
 				Case $btnDeletePBMessages
