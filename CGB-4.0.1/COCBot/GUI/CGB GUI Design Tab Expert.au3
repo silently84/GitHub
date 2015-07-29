@@ -16,86 +16,86 @@
 ;~ -------------------------------------------------------------
 ;~ Expert Tab
 ;~ -------------------------------------------------------------
-$tabExpert = GUICtrlCreateTabItem("세부설정")
+$tabExpert = GUICtrlCreateTabItem("Expert")
 Local $x = 30, $y = 150
-$grpOnLoadBot = GUICtrlCreateGroup("부팅작업", $x - 20, $y - 20, 205, 112)
-$chkVersion = GUICtrlCreateCheckbox("최신버전확인", $x, $y, -1, -1)
-$txtTip = "프로그램 부팅시 최신버전을 확인합니다."
+$grpOnLoadBot = GUICtrlCreateGroup("When Bot Loads", $x - 20, $y - 20, 205, 112)
+$chkVersion = GUICtrlCreateCheckbox("Check for Updates", $x, $y, -1, -1)
+$txtTip = "Check if you are running the latest version of the bot."
 GUICtrlSetTip(-1, $txtTip)
 GUICtrlSetState(-1, $GUI_CHECKED)
 $y += 22
-$chkDeleteLogs = GUICtrlCreateCheckbox("로그파일삭제 :", $x, $y, -1, -1)
-$txtTip = "설정된 시간 이전에 생성된 로그파일을 삭제합니다."
+$chkDeleteLogs = GUICtrlCreateCheckbox("Delete Log Files:", $x, $y, -1, -1)
+$txtTip = "Delete log files older than this specified No. of days."
 GUICtrlSetTip(-1, $txtTip)
 GUICtrlSetOnEvent(-1, "chkDeleteLogs")
 $txtDeleteLogsDays = GUICtrlCreateInput("7", $x + 120, $y, 25, -1, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 GUICtrlSetTip(-1, $txtTip)
 GUICtrlSetLimit(-1, 2)
 GUICtrlSetState(-1, $GUI_DISABLE)
-$lblDeleteLogsDays = GUICtrlCreateLabel("일", $x + 150, $y + 4, 38, 15)
+$lblDeleteLogsDays = GUICtrlCreateLabel("days", $x + 150, $y + 4, 38, 15)
 $y += 22
-$chkDeleteTemp = GUICtrlCreateCheckbox("임시파일삭제 :", $x, $y, -1, -1)
-$txtTip = "설정된 시간 이전에 생성된 임시파일(찰칵)을 삭제합니다."
+$chkDeleteTemp = GUICtrlCreateCheckbox("Delete Temp Files:", $x, $y, -1, -1)
+$txtTip = "Delete temp files older than this specified No. of days."
 GUICtrlSetTip(-1, $txtTip)
 GUICtrlSetOnEvent(-1, "chkDeleteTemp")
 $txtDeleteTempDays = GUICtrlCreateInput("7", $x + 120, $y, 25, -1, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 GUICtrlSetTip(-1, $txtTip)
 GUICtrlSetLimit(-1, 2)
 GUICtrlSetState(-1, $GUI_DISABLE)
-$lblDeleteTempDays = GUICtrlCreateLabel("일", $x + 150, $y + 4, 38, 15)
+$lblDeleteTempDays = GUICtrlCreateLabel("days", $x + 150, $y + 4, 38, 15)
 $y += 22
-$chkDeleteLoots = GUICtrlCreateCheckbox("약탈이미지삭제 :", $x, $y, -1, -1)
-$txtTip = "설정된 시간 이전에 생성된 약탈화면 저장파일을 삭제합니다."
+$chkDeleteLoots = GUICtrlCreateCheckbox("Delete Loot Images:", $x, $y, -1, -1)
+$txtTip = "Delete loot image files older than this specified No. of days."
 GUICtrlSetTip(-1, $txtTip)
 GUICtrlSetOnEvent(-1, "chkDeleteLoots")
 $txtDeleteLootsDays = GUICtrlCreateInput("7", $x + 120, $y, 25, -1, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 GUICtrlSetTip(-1, $txtTip)
 GUICtrlSetLimit(-1, 2)
 GUICtrlSetState(-1, $GUI_DISABLE)
-$lblDeleteLootsDays = GUICtrlCreateLabel("일", $x + 150, $y + 4, 38, 15)
+$lblDeleteLootsDays = GUICtrlCreateLabel("days", $x + 150, $y + 4, 38, 15)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 
 Local $x = 30, $y = 265
-$grpOnStartBot = GUICtrlCreateGroup("작업시작설정", $x - 20, $y - 20, 205, 115)
-$chkAutostart = GUICtrlCreateCheckbox("자동시작 :", $x, $y, -1, -1)
-GUICtrlSetTip(-1, "프로그램이 실행되고 설정된 시간 이후에 자동으로 시작합니다.")
+$grpOnStartBot = GUICtrlCreateGroup("When Bot Starts", $x - 20, $y - 20, 205, 115)
+$chkAutostart = GUICtrlCreateCheckbox("Auto START after:", $x, $y, -1, -1)
+GUICtrlSetTip(-1, "Auto START the Bot after this No. of seconds.")
 GUICtrlSetOnEvent(-1, "chkAutostart")
-$txtAutostartDelay = GUICtrlCreateInput("10", $x + 80, $y, 25, -1, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+$txtAutostartDelay = GUICtrlCreateInput("10", $x + 120, $y, 25, -1, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 GUICtrlSetState(-1, $GUI_DISABLE)
-$lblAutostartSeconds = GUICtrlCreateLabel("초 후", $x + 110, $y + 4, 38, 18)
+$lblAutostartSeconds = GUICtrlCreateLabel("sec.", $x + 150, $y + 4, 38, 18)
 $y += 22
-$chkLanguage = GUICtrlCreateCheckbox("게임언어 확인(EN)", $x, $y, -1, -1)
-GUICtrlSetTip(-1, "게임언어가 'English'로 설정되어있는지 확인합니다.")
+$chkLanguage = GUICtrlCreateCheckbox("Check Game Language (EN)", $x, $y, -1, -1)
+GUICtrlSetTip(-1, "Check if the Game is set to the correct language (Must be set to English).")
 GUICtrlSetState(-1, $GUI_CHECKED)
 $y += 22
-$chkDisposeWindows = GUICtrlCreateCheckbox("자동정렬", $x, $y, -1, -1)
-$txtTip = "윈도우 화면상에서 '블루스택(BS)'과 'CGB창(Bot)'의 위치를 변경합니다."
+$chkDisposeWindows = GUICtrlCreateCheckbox("Auto Align", $x, $y, -1, -1)
+$txtTip = "Reposition/Align Bluestacks and GameBot windows on the screen."
 GUICtrlSetOnEvent(-1, "chkDisposeWindows")
 GUICtrlSetTip(-1, $txtTip)
 GUICtrlSetLimit(-1, 2)
-$lblOffset = GUICtrlCreateLabel("간격 :", $x + 85, $y + 4, -1, -1)
-$txtWAOffset = GUICtrlCreateInput("15", $x + 120, $y, 25, -1, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
-$txtTip = "'블루스택(BS)'과 'CGB창(Bot)'의 간격을 설정합니다."
+$lblOffset = GUICtrlCreateLabel("Offset:", $x + 85, $y + 4, -1, -1)
+$txtWAOffset = GUICtrlCreateInput("10", $x + 120, $y, 25, -1, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+$txtTip = "Offset in pixels between BlueStacks (BS) and GameBOT windows."
 GUICtrlSetTip(-1, $txtTip)
 GUICtrlSetLimit(-1, 2)
-$lblWAOffsetSeconds = GUICtrlCreateLabel("pixs", $x + 150, $y + 4, 38, 18)
+$lblWAOffsetSeconds = GUICtrlCreateLabel("pixels", $x + 150, $y + 4, 38, 18)
 $y += 23
 $cmbDisposeWindowsCond = GUICtrlCreateCombo("", $x + 15, $y, 165, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-GUICtrlSetData(-1, "0,0: BS-Bot|0,0: Bot-BS|SNAP: BS 우상단|SNAP: BS 좌상단|SNAP: BS 우하단|SNAP: BS 좌하단", "SNAP: BS 우상단")
-$txtTip &= @CRLF & "0,0: 앞에 있는 창을 윈도우화면 좌상단으로 이동시키고, 뒤에 있는 창을 그 오른쪽으로 이동시킵니다." & @CRLF & _
-		"SNAP: 블루스택 창의 위치를 확인하여 Bot의 위치를 각각 설정된 위치로 이동 시킵니다."
+GUICtrlSetData(-1, "0,0: BlueStacks-Bot|0,0: Bot-BlueStacks|SNAP: Bot TopRight to BS|SNAP: Bot TopLeft to BS|SNAP: Bot BottomRight to BS|SNAP: Bot BottomLeft to BS", "SNAP: Bot TopRight to BS")
+$txtTip &= @CRLF & "0,0: Reposition BS screen to position 0,0 on windows desktop and align Bot window right or left to it." & @CRLF & _
+		"SNAP: Only reorder windows, Align Bot window to BlueStacks window at Top Right, Top Left, Bottom Right or Bottom Left."
 GUICtrlSetTip(-1, $txtTip)
 GUICtrlSetState(-1, $GUI_DISABLE)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 Local $x = 30, $y = 385
-$grpTiming = GUICtrlCreateGroup("타이밍", $x - 20, $y - 20, 205, 50)
-$lblTrainDelay = GUICtrlCreateLabel("훈련간격 :", $x, $y, -1, -1)
-$lbltxtTrainITDelay = GUICtrlCreateLabel(" ", $x + 60, $y, 50, 50)
-GUICtrlSetTip(-1, "저사양PC를 위하여 유닛훈련간격을 증가시킵니다.")
+$grpTiming = GUICtrlCreateGroup("Timing", $x - 20, $y - 20, 205, 50)
+$lblTrainDelay = GUICtrlCreateLabel("Train Troops:", $x, $y, -1, -1)
+$lbltxtTrainITDelay = GUICtrlCreateLabel("delay", $x + 70, $y - 5, 37, 50)
+GUICtrlSetTip(-1, "Increase the delay if your PC is slow")
 $sldTrainITDelay = GUICtrlCreateSlider($x + 105, $y - 5, 70, 25, BitOR($TBS_TOOLTIPS, $TBS_AUTOTICKS))
-GUICtrlSetTip(-1, "저사양PC를 위하여 유닛훈련간격을 증가시킵니다.")
+GUICtrlSetTip(-1, "Increase the delay if your PC is slow")
 GUICtrlSetBkColor(-1, $COLOR_WHITE)
 _GUICtrlSlider_SetTipSide(-1, $TBTS_BOTTOM)
 _GUICtrlSlider_SetTicFreq(-100, 100)
@@ -106,13 +106,13 @@ GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 Local $x = 30, $y = 435
 $grpDebug = GUICtrlCreateGroup("Debug", $x - 20, $y - 20, 205, 90)
-$chkDebugClick = GUICtrlCreateCheckbox("클릭좌표 확인", $x, $y, -1, -1)
-GUICtrlSetTip(-1, "Debug: 로그에 클릭하는 좌표(x,y)를 기록합니다.")
+$chkDebugClick = GUICtrlCreateCheckbox("Debug Clicked Coordinates", $x, $y, -1, -1)
+GUICtrlSetTip(-1, "Debug: Write the clicked (x,y) coordinates to the log.")
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 Local $x = 240, $y = 150
-$grpScheduler = GUICtrlCreateGroup("클랜 스케쥴러", $x - 20, $y - 20, 240, 235)
-$chkDonateHours = GUICtrlCreateCheckbox("유닛지원 시간설정", $x, $y)
+$grpScheduler = GUICtrlCreateGroup("Clan Castle Scheduler", $x - 20, $y - 20, 240, 235)
+$chkDonateHours = GUICtrlCreateCheckbox("Donate CC only during these hours of day", $x, $y)
 GUICtrlSetOnEvent(-1, "chkDonateHours")
 $y += 20
 $lbDonateHours1 = GUICtrlCreateLabel(" 0", $x + 30, $y)
@@ -164,7 +164,7 @@ $chkDonateHours10 = GUICtrlCreateCheckbox("", $x + 180, $y, 15, 15)
 GUICtrlSetState(-1, $GUI_CHECKED + $GUI_DISABLE)
 $chkDonateHours11 = GUICtrlCreateCheckbox("", $x + 195, $y, 15, 15)
 GUICtrlSetState(-1, $GUI_CHECKED + $GUI_DISABLE)
-$lbDonateHoursAM = GUICtrlCreateLabel("AM", $x + 10, $y + 2)
+$lbDonateHoursAM = GUICtrlCreateLabel("AM", $x + 10, $y)
 GUICtrlSetState(-1, $GUI_DISABLE)
 $y += 15
 $chkDonateHours12 = GUICtrlCreateCheckbox("", $x + 30, $y, 15, 15)
@@ -191,10 +191,10 @@ $chkDonateHours22 = GUICtrlCreateCheckbox("", $x + 180, $y, 15, 15)
 GUICtrlSetState(-1, $GUI_CHECKED + $GUI_DISABLE)
 $chkDonateHours23 = GUICtrlCreateCheckbox("", $x + 195, $y, 15, 15)
 GUICtrlSetState(-1, $GUI_CHECKED + $GUI_DISABLE)
-$lbDonateHoursPM = GUICtrlCreateLabel("PM", $x + 10, $y + 2)
+$lbDonateHoursPM = GUICtrlCreateLabel("PM", $x + 10, $y)
 GUICtrlSetState(-1, $GUI_DISABLE)
 $y += 22
-$chkRequestCCHours = GUICtrlCreateCheckbox("유닛요청 시간설정", $x, $y)
+$chkRequestCCHours = GUICtrlCreateCheckbox("Request CC only during these hours of day", $x, $y)
 GUICtrlSetOnEvent(-1, "chkRequestCCHours")
 $y += 20
 $lbRequestCCHours1 = GUICtrlCreateLabel(" 0", $x + 30, $y)
@@ -246,7 +246,7 @@ $chkRequestCCHours10 = GUICtrlCreateCheckbox("", $x + 180, $y, 15, 15)
 GUICtrlSetState(-1, $GUI_CHECKED + $GUI_DISABLE)
 $chkRequestCCHours11 = GUICtrlCreateCheckbox("", $x + 195, $y, 15, 15)
 GUICtrlSetState(-1, $GUI_CHECKED + $GUI_DISABLE)
-$lbRequestCCHoursAM = GUICtrlCreateLabel("AM", $x + 10, $y + 2)
+$lbRequestCCHoursAM = GUICtrlCreateLabel("AM", $x + 10, $y)
 GUICtrlSetState(-1, $GUI_DISABLE)
 $y += 15
 $chkRequestCCHours12 = GUICtrlCreateCheckbox("", $x + 30, $y, 15, 15)
@@ -273,10 +273,10 @@ $chkRequestCCHours22 = GUICtrlCreateCheckbox("", $x + 180, $y, 15, 15)
 GUICtrlSetState(-1, $GUI_CHECKED + $GUI_DISABLE)
 $chkRequestCCHours23 = GUICtrlCreateCheckbox("", $x + 195, $y, 15, 15)
 GUICtrlSetState(-1, $GUI_CHECKED + $GUI_DISABLE)
-$lbRequestCCHoursPM = GUICtrlCreateLabel("PM", $x + 10, $y + 2)
+$lbRequestCCHoursPM = GUICtrlCreateLabel("PM", $x + 10, $y)
 GUICtrlSetState(-1, $GUI_DISABLE)
 $y += 22
-$chkDropCCHours = GUICtrlCreateCheckbox("클랜성 사용 시간설정", $x, $y)
+$chkDropCCHours = GUICtrlCreateCheckbox("Drop CC only during these hours of day", $x, $y)
 GUICtrlSetOnEvent(-1, "chkDropCCHours")
 $y += 20
 $lbDropCCHours1 = GUICtrlCreateLabel(" 0", $x + 30, $y)
@@ -328,7 +328,7 @@ $chkDropCCHours10 = GUICtrlCreateCheckbox("", $x + 180, $y, 15, 15)
 GUICtrlSetState(-1, $GUI_CHECKED + $GUI_DISABLE)
 $chkDropCCHours11 = GUICtrlCreateCheckbox("", $x + 195, $y, 15, 15)
 GUICtrlSetState(-1, $GUI_CHECKED + $GUI_DISABLE)
-$lbDropCCHoursAM = GUICtrlCreateLabel("AM", $x + 10, $y + 2)
+$lbDropCCHoursAM = GUICtrlCreateLabel("AM", $x + 10, $y)
 GUICtrlSetState(-1, $GUI_DISABLE)
 $y += 15
 $chkDropCCHours12 = GUICtrlCreateCheckbox("", $x + 30, $y, 15, 15)
@@ -355,27 +355,27 @@ $chkDropCCHours22 = GUICtrlCreateCheckbox("", $x + 180, $y, 15, 15)
 GUICtrlSetState(-1, $GUI_CHECKED + $GUI_DISABLE)
 $chkDropCCHours23 = GUICtrlCreateCheckbox("", $x + 195, $y, 15, 15)
 GUICtrlSetState(-1, $GUI_CHECKED + $GUI_DISABLE)
-$lbDropCCHoursPM = GUICtrlCreateLabel("PM", $x + 10, $y + 2)
+$lbDropCCHoursPM = GUICtrlCreateLabel("PM", $x + 10, $y)
 GUICtrlSetState(-1, $GUI_DISABLE)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 Local $x = 240, $y = 390
-$grpOtherExpert = GUICtrlCreateGroup("기타옵션", $x - 20, $y - 20, 240, 65)
-$chkTotalCampForced = GUICtrlCreateCheckbox("집합소인원 강제설정 :", $x, $y, -1, -1)
+$grpOtherExpert = GUICtrlCreateGroup("Other Options", $x - 20, $y - 20, 240, 65)
+$chkTotalCampForced = GUICtrlCreateCheckbox("Force Total Army Camp:", $x, $y, -1, -1)
 GUICtrlSetOnEvent(-1, "chkTotalCampForced")
-GUICtrlSetTip(-1, "수용인원이 확인되지 않은 경우를 위하여 집합소 인원을 강제로 설정합니다.")
-$txtTotalCampForced = GUICtrlCreateInput("200", $x + 145, $y, 35, -1, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+GUICtrlSetTip(-1, "If not detected set army camp values (instead ask)")
+$txtTotalCampForced = GUICtrlCreateInput("200", $x + 135, $y, 35, -1, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 GUICtrlSetLimit(-1, 3)
 GUICtrlSetState(-1, $GUI_DISABLE)
 $y += 22
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 Local $x = 240, $y = 460
-$grpOtherExpert = GUICtrlCreateGroup("'찰칵' 옵션", $x - 20, $y - 20, 240, 65)
-$chkScreenshotType = GUICtrlCreateCheckbox("PNG파일로 저장", $x, $y, -1, -1)
+$grpOtherExpert = GUICtrlCreateGroup("Photo Screenshot Options", $x - 20, $y - 20, 240, 65)
+$chkScreenshotType = GUICtrlCreateCheckbox("Make in PNG format", $x, $y, -1, -1)
 GUICtrlSetOnEvent(-1, "chkScreenshotType")
 $y += 22
-$chkScreenshotHideName = GUICtrlCreateCheckbox("마을이름과 클랜이름 숨김", $x, $y, -1, -1)
+$chkScreenshotHideName = GUICtrlCreateCheckbox("Hide Village and Clan Castle Name", $x, $y, -1, -1)
 GUICtrlSetOnEvent(-1, "chkScreenshotHideName")
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 GUICtrlCreateTabItem("")

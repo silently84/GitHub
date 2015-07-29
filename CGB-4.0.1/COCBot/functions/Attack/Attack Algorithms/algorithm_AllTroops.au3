@@ -131,45 +131,9 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 		Case 3 ;Two sides ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			SetLog("Attacking on all sides", $COLOR_BLUE)
 			$nbSides = 4
-		Case 4 ;Four fingers style ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-			SetLog("Four fingers Barch deployment style", $COLOR_BLUE)
-			$nbSides = 5
 	EndSwitch
 	If ($nbSides = 0) Then Return
 	If _Sleep(1000) Then Return
-#cs moded by mhazwankamal (four finger mod)
-	Local $listInfoDeploy[13][5] = [[$eGiant, $nbSides, 1, 1, 2] _
-			, [$eBarb, $nbSides, 1, 2, 0] _
-			, [$eWall, $nbSides, 1, 1, 1] _
-			, [$eArch, $nbSides, 1, 2, 0] _
-			, [$eBarb, $nbSides, 2, 2, 0] _
-			, [$eGobl, $nbSides, 1, 2, 0] _
-			, ["CC", 1, 1, 1, 1] _
-			, [$eHogs, $nbSides, 1, 1, 1] _
-			, [$eWiza, $nbSides, 1, 1, 0] _
-			, [$eMini, $nbSides, 1, 1, 0] _
-			, [$eArch, $nbSides, 2, 2, 0] _
-			, [$eGobl, $nbSides, 2, 2, 0] _
-			, ["HEROES", 1, 2, 1, 1] _
-			]
-#ce
-	if $nbSides = 5 then ;change max wave for bar and arch to 1
-
-	Local $listInfoDeploy[13][5] = [[$eGiant, $nbSides, 1, 1, 2] _
-			, [$eBarb, $nbSides, 1, 1, 0] _
-			, [$eWall, $nbSides, 1, 1, 1] _
-			, [$eArch, $nbSides, 1, 1, 0] _
-			, [$eBarb, $nbSides, 2, 2, 0] _
-			, [$eGobl, $nbSides, 1, 2, 0] _
-			, ["CC", 1, 1, 1, 1] _
-			, [$eHogs, $nbSides, 1, 1, 1] _
-			, [$eWiza, $nbSides, 1, 1, 0] _
-			, [$eMini, $nbSides, 1, 1, 0] _
-			, [$eArch, $nbSides, 2, 2, 0] _
-			, [$eGobl, $nbSides, 2, 2, 0] _
-			, ["HEROES", 1, 2, 1, 1] _
-			]
-	else
 
 	Local $listInfoDeploy[13][5] = [[$eGiant, $nbSides, 1, 1, 2] _
 			, [$eBarb, $nbSides, 1, 2, 0] _
@@ -185,7 +149,7 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 			, [$eGobl, $nbSides, 2, 2, 0] _
 			, ["HEROES", 1, 2, 1, 1] _
 			]
-	endif
+
 
 	LaunchTroop2($listInfoDeploy, $CC, $King, $Queen)
 
